@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import withAuth from '../../utils/withAuth';
 import { supabase } from '../../utils/supabaseClient';
-import styles from '../../styles/Dashboard.module.css'; // Import the CSS module
+import styles from '../../styles/Dashboard.module.css';
+import { Box, CircularProgress } from '@mui/material'; // Import the CSS module
 
 const DashboardPage = () => {
   const [scooters, setScooters] = useState([]);
@@ -26,7 +27,18 @@ const DashboardPage = () => {
   }, []);
 
   if (loading) {
-    return <div className={styles.loading}>Loading...</div>;
+    return (
+      <Box 
+        sx={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100vh' 
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
   }
 
   if (error) {
@@ -36,7 +48,7 @@ const DashboardPage = () => {
   return (
     <div className={styles.dashboard}>
       <h1 className={styles.title}>Dashboard</h1>
-      <a href="/map" className={styles.mapLink}>View Map</a>
+
       <ul className={styles.scooterList}>
         {scooters.length > 0 ? (
           scooters.map((scooter) => (
@@ -59,9 +71,9 @@ const DashboardPage = () => {
                     View on Map
                   </a>
                 </div>
-                <div className={styles.scooterImage}>
+                {/* <div className={styles.scooterImage}>
                   {scooter.image_url ? <img src={scooter.image_url} alt={scooter.model} /> : <div className={styles.noImage}>No Image</div>}
-                </div>
+                </div> */}
               </div>
             </li>
           ))

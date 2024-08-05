@@ -12,14 +12,14 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".", // Add this line
+    "baseUrl": ".", // Ensures base URL for imports
     "paths": {
-      "@/*": ["./*"],
-      "@pages/*": ["./pages/*"] // Add this line to ensure pages are referenced correctly
+      "@/*": ["./*"], // Maps "@" to the project root
+      "@pages/*": ["./pages/*"] // Maps "@pages" to the "pages" directory
     },
     "plugins": [
       {
-        "name": "next"
+        "name": "next" // Ensures proper Next.js plugin usage
       }
     ]
   },
